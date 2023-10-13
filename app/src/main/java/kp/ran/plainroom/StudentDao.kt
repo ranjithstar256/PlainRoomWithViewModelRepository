@@ -28,8 +28,11 @@ interface StudentDao {
     suspend fun getloc(namex:String)
 */
     @Query("SELECT location FROM Students WHERE name LIKE :namex")
-    suspend fun getloc(namex: String): String?
+    suspend fun getloc(namex: String): String
+
     //@Query("select * from Students where name like name")
+    // @Query("SELECT * FROM notes WHERE id=:noteId")
+    //   @Query("SELECT * FROM task WHERE task LIKE :taskname ")
 
     @Query("SELECT id FROM Students where name = :itm")
     suspend fun getId(itm:String):Int

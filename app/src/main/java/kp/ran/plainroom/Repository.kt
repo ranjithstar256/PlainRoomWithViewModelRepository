@@ -17,5 +17,12 @@ class Repository(val stdao:StudentDao) {
     suspend fun deleteUser(user: Students) {
         stdao.delete(user)
     }
+
+    suspend fun getloc(loc : String):String{
+        return stdao.getloc(loc)
+    }
+    suspend fun getId(id : String):Int{
+        return stdao.getId(id)
+    }
 }
 

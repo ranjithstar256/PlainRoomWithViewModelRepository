@@ -132,8 +132,8 @@ class MainActivity : ComponentActivity() {
                 derivedStateOf {
                     runBlocking {
                         withContext(Dispatchers.IO) {
-                     //      viewModel.ggetloc(name)
-                    //        v
+                           viewModel.getLoc(name)
+
                         }
                     }
                 }
@@ -160,6 +160,24 @@ class MainActivity : ComponentActivity() {
             }) {
             Text(text = "Retrive all")
         }
+        Button(onClick = {
+            scope.launch {
+
+
+                // var idint : Int = name.toInt()
+                val id = viewModel.getId(name)
+
+                viewModel.deleteStudent(Students(
+                    id = id,
+                    name = name,
+                    age = id,
+                    location = ""
+                ))
+
+            }
+        }) {
+            Text(text = "Delete user")
+        }
         if (getallbool) {
             val showcustomrows by remember {
                 derivedStateOf {
@@ -178,8 +196,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-
-
 
         if (getallbool) {
             val showcustomrows by remember {
@@ -201,22 +217,6 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        Button(onClick = {
-            scope.launch {
 
-          //      val id = db.studentDao.getId(name)
-
-//                viewModel.deleteStudent(Students(
-//                    id = id,
-//                    name = name,
-//                    age = id,
-//                    location = ""
-//                ))
-
-
-            }
-        }) {
-            Text(text = "Delete user")
-        }
     }
 }

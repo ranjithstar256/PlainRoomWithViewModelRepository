@@ -2,7 +2,9 @@ package kp.ran.plainroom
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
- import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class StudentViewModel(private val repository: Repository) : ViewModel() {
 
@@ -29,6 +31,19 @@ class StudentViewModel(private val repository: Repository) : ViewModel() {
     fun deleteStudent(student: Students) {
         viewModelScope.launch {
             repository.deleteUser(student)
+        }
+    }
+
+
+    suspend fun getLoc(loc: String): String {
+        return withContext(Dispatchers.IO) {
+            repository.getloc(loc)
+        }
+    }
+
+    suspend fun getId(id: String): Int {
+        return withContext(Dispatchers.IO) {
+            repository.getId(id)
         }
     }
 }
